@@ -1,0 +1,102 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenge.test.aoyama.mapper.AoyamaMapper">
+    <!--queryAll-->
+    <resultMap type="com.wenge.test.aoyama.model.VO.AoyamaVO" id="DataAoyamaAll">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="announcement_title" property="announcementTitle" jdbcType="VARCHAR"/>
+        <result column="announcement_time" property="announcementTime" jdbcType="VARCHAR"/>
+        <result column="auction_name" property="auctionName" jdbcType="VARCHAR"/>
+        <result column="auction_type" property="auctionType" jdbcType="VARCHAR"/>
+        <result column="auction_time" property="auctionTime" jdbcType="VARCHAR"/>
+        <result column="auction_frequency" property="auctionFrequency" jdbcType="VARCHAR"/>
+        <result column="starting_amount" property="startingAmount" jdbcType="VARCHAR"/>
+        <result column="price_increase_margin" property="priceIncreaseMargin" jdbcType="VARCHAR"/>
+        <result column="security_deposit" property="securityDeposit" jdbcType="VARCHAR"/>
+        <result column="signing_time" property="signingTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getList" resultMap="DataAoyamaAll">
+        SELECT
+            id,
+            announcement_title,
+            announcement_time,
+            auction_name,
+            auction_type,
+            auction_time,
+            auction_frequency,
+            starting_amount,
+            price_increase_margin,
+            security_deposit,
+            signing_time
+        FROM
+            test_aoyama_info
+    </select>
+
+    <select id="oneBeat" resultMap="DataAoyamaAll">
+        select
+            id,
+            announcement_title,
+            announcement_time,
+            auction_name,
+            auction_type,
+            auction_time,
+            auction_frequency,
+            starting_amount,
+            price_increase_margin,
+            security_deposit,
+            signing_time
+        from test_aoyama_info
+            where auction_frequency = '一拍'
+    </select>
+
+    <select id="erpai" resultMap="DataAoyamaAll">
+        select
+            id,
+            announcement_title,
+            announcement_time,
+            auction_name,
+            auction_type,
+            auction_time,
+            auction_frequency,
+            starting_amount,
+            price_increase_margin,
+            security_deposit,
+            signing_time
+        from test_aoyama_info
+        where auction_frequency = '二拍'
+    </select>
+
+    <select id="sellOff" resultMap="DataAoyamaAll">
+        select
+            id,
+            announcement_title,
+            announcement_time,
+            auction_name,
+            auction_type,
+            auction_time,
+            auction_frequency,
+            starting_amount,
+            price_increase_margin,
+            security_deposit,
+            signing_time
+        from test_aoyama_info
+        where auction_frequency = '变卖'
+    </select>
+
+    <select id="login" resultType="boolean">
+        select
+            id,
+            token,
+            username,
+            password
+        from
+            test_aoyama_user
+        where
+             username = #{userName}
+        and
+             password = #{passWord}
+    </select>
+
+</mapper>
